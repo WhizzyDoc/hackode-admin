@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="./static/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="./static/css/fontawesome.css">
+    <link rel="stylesheet" type="text/css" href="./static/css/rigan.css">
+    <link rel="stylesheet" type="text/css" href="./static/themes/w-theme-blue.css">
+    <link rel="stylesheet" type="text/css" href="./dist/semantic.min.css">
+    <link rel="stylesheet" type="text/css" href="./static/css/sweetalert.min.css">
+    <link rel="stylesheet" type="text/css" href="./static/css/login.css">
+    <script src="./static/module/swif.js"></script>
+    <script src="./dist/jquery.min.js"></script>
+    <script src="./static/js/bootstrap.min.js"></script>
+    <script src="./static/js/sweetalert.min.js"></script>
+    <script src="./dist/semantic.min.js"></script> 
+    <title>Hackode Admin Login</title>
+    <!-- Templates -->
+    <template id="404">
+        <?include: "templates/_parts/404.html"?><?end?>
+    </template>
+
+
+    <!-- login -->
+  <template id="login">
+    <div class="row">
+        <div class="login-form col-12 col-sm-12 col-md-6 col-lg-5 col-xl-5">   
+          <div class="wrapper">
+                      <form class="admin-login-form" action="#">
+                        <h2>Admin Login</h2>
+                          <div class="input-field">
+                          <input type="text" id="admin-username" required>
+                          <label>Enter Your Username</label>
+                        </div>
+                        <div class="input-field">
+                          <input type="password" id="admin-password" required>
+                          
+                          <label>Enter your password</label>
+                        </div>
+                        <p class="mt-2 w-text-yellow" id="admin_err"></p>
+                        <div class="forget">
+                          <label for="remember">
+                            <input type="checkbox" id="remember">
+                            <p>Remember me</p>
+                          </label>
+                          <a href="#forgot_password">Forgot password?</a>
+                        </div>
+                        <button type="submit" class="login-btn">Log In</button>
+                        
+                      </form>
+          </div>
+            
+        </div>
+    </div>
+    <script>
+        $('.view-pass').click(function() {
+            var input = $(this).siblings('input');
+            if(input.attr('type') == 'password') {
+                input.attr('type', 'text');
+                $(this).children('span').html(`<i class="fa fa-eye-slash"></i>`)
+            }
+            else {
+                input.attr('type', 'password')
+                $(this).children('span').html(`<i class="fa fa-eye"></i>`)
+            }
+        })
+        
+        $('.admin-login-form').submit(function(e) {
+            e.preventDefault();
+            authenticate();
+        })
+  
+    </script>
+  </template>
+
+
+
+    <!-- Routes -->
+<!-- homepage -->
+<template route="/">
+    <?use-template: "login"?>
+  </template>
+    <script>
+        var on = XJSX.event.on,
+        emit = XJSX.event.emit;
+        emit("hashchange");
+    </script>
+</head>
+<body>
+    <script>
+        if(localStorage.api_key) {
+            location.href = './admin.html';
+        }
+    </script>
+    <?on: "hashchange"?>
+
+<?eval:
+"var hash=location.hash
+hash=hash.replace(/^\/?#\/?|^/img,'/')
+var page=document.querySelector(`template[route='${hash}']`)||'404';"?>
+
+<?use-template: page?>
+<?end?>
+
+    <script src="./static/js/functions.js"></script>
+    <script src="./static/js/login.js"></script>
+    
+</body>
+</html>
