@@ -171,7 +171,7 @@ function getSubmission(id) {
         
         $('#sub-name').val(`${d.student.first_name} ${d.student.last_name}`)
         
-        $('#comment').val(d.comment)
+        $('#comment').html(d.comment)
       }
       else if(data['status'] == 'error') {
         swal('Error', data.message, 'error')
