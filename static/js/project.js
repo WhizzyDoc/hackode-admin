@@ -237,7 +237,7 @@ function saveSubmission(id) {
         swal("Error", "Please check your internet connection", "error")
     })
 }
-
+/*
 tinymce.init({
     selector: '.html-text',
     plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed linkchecker a11ychecker tinymcespellchecker permanentpen powerpaste advtable advcode editimage tinycomments tableofcontents footnotes mergetags autocorrect typography inlinecss',
@@ -249,3 +249,4 @@ tinymce.init({
         {value: 'Email', title: 'Email'},
     ],
 });
+*/
