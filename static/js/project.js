@@ -170,9 +170,8 @@ function getSubmission(id) {
         $('.sub-edit-form').data('id', d.id)
         
         $('#sub-name').val(`${d.student.first_name} ${d.student.last_name}`)
-        if(d.comment !== undefined && d.comment !== '') {
-            $('#comment').val(d.comment)
-        }
+        
+        $('#comment').val(d.comment)
       }
       else if(data['status'] == 'error') {
         swal('Error', data.message, 'error')
