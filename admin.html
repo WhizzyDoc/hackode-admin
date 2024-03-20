@@ -129,13 +129,39 @@ for (i = 0; i < acc.length; i++) {
         <main class="">
           <?use-template: "header"?>
           <h2 class="w-bold-x w-center">Courses</h2>
-          <div class="w-flex w-flex-wrap w-flex-around w-align-center course-row">
-            <div class="loader">
-              <div class="ball"></div>
-              <div class="ball"></div>
-              <div class="ball"></div>
-              <div class="ball"></div>
+          <div class="w-flex w-flex-around w-align-center">
+            <div class="input-group">
+              <input type="text" value="" class="form-control course-search" placeholder="Search course">
+              <div class="input-group-append">
+                <span class="input-group-text"><i class="fa fa-search"></i></span>
+              </div>
             </div>
+            <select class="custom-select skill-filter">
+              <option selected value="">All Skills</option>
+            </select>
+          </div>
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th style="width:50px;">Order</th>
+                  <th>Title</th>
+                  <th colspan="2">Actions</th>
+                </tr>
+              </thead>
+              <tbody class="course-row">
+                <tr>
+                  <td colspan="4">
+                    <div class="loader">
+                      <div class="ball"></div>
+                      <div class="ball"></div>
+                      <div class="ball"></div>
+                      <div class="ball"></div>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </main>
 
@@ -149,7 +175,7 @@ for (i = 0; i < acc.length; i++) {
               <input type="radio" name="slider" id="blog">
               <div class="tabs">
                 <label for="home" class="home"><i class="fa fa-book"></i>Materials</label>
-                <label for="blog" class="blog"><i class="fa fa-question"></i>Quizzes</label>
+                <label for="blog" class="blog"><i class="fa fa-question"></i>Videos</label>
                 <div class="slider"></div>
               </div>
               <section>
@@ -220,13 +246,24 @@ for (i = 0; i < acc.length; i++) {
           <div class="mb-2">
             <button class="add_emp_btn c_back_btn3"><i class="fa fa-arrow-left"></i></button>
             <h3><span class="mat-title"></span></h3>
-            <div class="mat-content"></div>
+            <textarea class="html-text mat-content" rows="20"></textarea>
+            <button class="btn btn-success btn-block w-padding w-margin-top save-material-btn" data-id="">Save Content</button>
           </div>
         </div>
 
         <script src="./static/js/course.js"></script>
     <script>
       $('.course-act').addClass('active');
+      $('.skill-filter').on('change', function() {
+        getCourses();
+      })
+      $('.course-search').on('input', function() {
+        getCourses()
+      })
+      $('.save-material-btn').click(function() {
+        var id = $(this).data('id')
+        editMaterial(id)
+      })
       $('.c_back_btn').click(function() {
         $('.sel_c_con').removeClass('active')
       });
@@ -443,7 +480,7 @@ for (i = 0; i < acc.length; i++) {
 <link rel="stylesheet" href="./static/css/editor_2.css" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
-<script src="https://cdn.tiny.cloud/1/ntpm8wccvu79outibfbyckg133geerx3v63a16nsz2c2bmsv/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>                                                                                         
+<script src="https://cdn.tiny.cloud/1/pwgkd2p8521qrbeimscgnrbzsg56j3ux10b30925apqfsy11/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
 
 <script>
 var on = XJSX.event.on,
