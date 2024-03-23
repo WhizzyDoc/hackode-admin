@@ -169,6 +169,7 @@ function getCourses() {
     formData.append('material_id', id)
     let content = tinymce.activeEditor.getContent({format: 'html'})
     formData.append('content', content)
+      $('.save-material-btn').html(`<i class="fa fa-spinner"></i> Submitting`)
     fetch(url, {
         method: 'POST',
         headers: {
@@ -180,9 +181,11 @@ function getCourses() {
     .then(data => {
         console.log(data);
         swal(data.status, data.message, data.status)
+        $('.save-material-btn').html(`Save Content`)
     })
     .catch(err => {
         console.log(err)
+        $('.save-material-btn').html(`Save Content`)
     })
   }
 
